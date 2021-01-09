@@ -20,8 +20,8 @@ let totalMonthlySalary = 0;
                 <td>${lastName}</td>
                 <td>${id}</td>
                 <td>${title}</td>
-                <td>${annualSalary}</td>
-                <td><button class="deleteMe">delete</button></td>
+                <td>$ ${annualSalary}</td>
+                <td><button id="deleteMe">delete</button></td>
             </tr>`)
 
         // add to and calculate total monthly salary
@@ -34,9 +34,13 @@ let totalMonthlySalary = 0;
             $('.totalZone').css("background-color", "red");
         }
 
-
         //Clear all fields
         $('.inputBoxes').val('');
 })
+
+    // Delete entries for employee when button is pressed
+    $('#masterTable').on('click', '#deleteMe', function(){
+        $(this).closest('tr').remove();
+    })
 
 })
