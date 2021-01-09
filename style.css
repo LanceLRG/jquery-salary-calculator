@@ -27,3 +27,7 @@ th {
 p {
     background-color: white;
 }
+
+.centerMe {
+    text-align: center;
+}

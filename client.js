@@ -10,22 +10,33 @@ let totalMonthlySalary = 0;
         let id = $('#id').val();
         let title = $('#title').val();
         let annualSalary = $('#annualSalary').val();
+
+        // ensures all fields are filled in with something
+        if (firstName === '' || lastName === '' || id === '' || title === '' || annualSalary === ''){
+            alert('Please fill in all fields before submitting');
+            return false;
+        }
+
+        //prevents non-numbers from being input into the Annual Salary field
+        if (isNaN(annualSalary)) {
+            alert("Annual Salary Field only accepts numbers")
+            return false;
+        }
         // console.log(firstName, lastName, id, title, annualSalary); // log to see if it worked. (it did)
 
         // append recieved information into the table
         $('#masterTable').append(`
             <tr>
-                <tr>
                 <td>${firstName}</td>
                 <td>${lastName}</td>
                 <td>${id}</td>
                 <td>${title}</td>
                 <td>$ ${annualSalary}</td>
-                <td><button id="deleteMe">delete</button></td>
+                <td class="centerMe"><button id="deleteMe">delete</button></td>
             </tr>`)
 
-        // add to and calculate total monthly salary
-        totalMonthlySalary += annualSalary/12;
+        // add to and calculate total monthly salary (ignoring fractions of cents)
+        totalMonthlySalary += Number((annualSalary/12).toFixed(2));
         $('#totalMonthly').empty();
         $('#totalMonthly').append(totalMonthlySalary);
 
